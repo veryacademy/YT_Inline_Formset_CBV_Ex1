@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Authors{% endblock %}
+
+{% block content %}
+
+<h1 class="h3">Authors</h1>
+
+ {% if author_list %}
+
+    <ul class="list-group">
+      {% for author in author_list %}
+        <li class="list-group-item">
+          <a class="text-reset" href="{{ author.get_absolute_url }}">{{ author.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+
+    <p>There are no author to display.</p>
+
+  {% endif %}
+
+    <p class="pt-2">
+      <a href="{% url 'books:home' %}" role="button" class="btn btn-secondary w-100">Cancel</a>
+    </p>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ author.name }}{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <h3>Authors Book Details</h3>
+    <div class="d-flex d-flex-inline"><span class="pe-2">Authors name:</span> <h5>{{ author.name|title }}</h5></div>
+    <hr>
+        {% for book in author.book_author.all %}
+        <div class="small">Book ID: {{ book.id }}</div>
+        <div>Title: {{ book.title }}</div>
+        <hr>
+        {% endfor %}
+    <p>
+        <a href="{% url 'books:author_book_edit' pk=author.pk %}" role="button" class="btn btn-primary w-100 mb-2">Edit Authors Books</a>
+        <a href="{% url 'books:list_authors' %}" role="button" class="btn btn-secondary w-100">All Collection</a>
+    </p>
+
+
+{% endblock content %}

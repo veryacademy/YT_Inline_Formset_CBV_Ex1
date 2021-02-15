@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}New Author{% endblock %}
+
+{% block content %}
+
+      <form action="" method="post">
+        {% for hidden_field in form.hidden_fields %}
+          {{ hidden_field.errors }}
+          {{ hidden_field }}
+        {% endfor %}
+
+        {% csrf_token %}
+
+        {{ form.non_form_errors }}
+
+        {% for field in form %}
+          {{ field.errors }}
+          {{ field.label_tag }} {{ field }}
+        {% endfor %}
+
+        <p class="pt-2">
+            <button type="submit" class="btn btn-primary w-100 mb-2">Add Author</button>
+            <a href="{% url 'books:home' %}" role="button" class="btn btn-secondary w-100">Cancel</a>
+        </p>
+      </form>
+
+{% endblock content %}
